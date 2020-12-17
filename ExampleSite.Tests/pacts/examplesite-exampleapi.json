@@ -1,0 +1,106 @@
+{
+  "consumer": {
+    "name": "ExampleSite"
+  },
+  "provider": {
+    "name": "ExampleAPI"
+  },
+  "interactions": [
+    {
+      "description": "A GET request",
+      "providerState": "I just hit controller root",
+      "request": {
+        "method": "get",
+        "path": "/"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        }
+      }
+    },
+    {
+      "description": "A GET request at the root",
+      "providerState": "I just hit controller root",
+      "request": {
+        "method": "get",
+        "path": "/"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": "Ahh OK"
+      }
+    },
+    {
+      "description": "A GET request to return a populated ExampleObject",
+      "providerState": "I provide the Id",
+      "request": {
+        "method": "get",
+        "path": "/Get/1/test/",
+        "headers": {
+          "Host": "localhost:9222",
+          "Version": "HTTP/1.1"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        }
+      }
+    },
+    {
+      "description": "A GET request to return a populated ExampleObject with params",
+      "providerState": "I provide the Id",
+      "request": {
+        "method": "get",
+        "path": "/Get/1/test/",
+        "headers": {
+          "Host": "localhost:9222",
+          "Version": "HTTP/1.1"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "Id": 1,
+          "WhenItHappened": "2020-12-17T09:22:33.3976928+00:00",
+          "ExampleString": "test"
+        }
+      }
+    },
+    {
+      "description": "A GET request to return a populated ExampleObject with params",
+      "providerState": "I provide param arguments",
+      "request": {
+        "method": "get",
+        "path": "/Get/1/test/",
+        "headers": {
+          "Host": "localhost:9222",
+          "Version": "HTTP/1.1"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "Id": 1,
+          "WhenItHappened": "2020-12-17T09:26:48.7585987+00:00",
+          "ExampleString": "test"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

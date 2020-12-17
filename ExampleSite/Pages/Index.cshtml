@@ -1,0 +1,18 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <form method="post">
+        <input type="submit" class="btn btn-danger" title="Hit Me" value="Press This"/>
+    </form>
+    <div class="row">
+        <div class="col-6">@Html.LabelFor(m => m.Id)</div>
+        <div class="col-6">@Html.DisplayFor(m => m.Id)</div>
+        <div class="col-6">@Html.LabelFor(m => m.TheValue)</div>
+        <div class="col-6">@Html.DisplayFor(m => m.TheValue)</div>
+    </div>
+</div>
