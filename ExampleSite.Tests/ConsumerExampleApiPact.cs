@@ -21,7 +21,7 @@ namespace ExampleSite.Tests
             //or
             //PactBuilder = new PactBuilder(new PactConfig { SpecificationVersion = "2.0.0" }); //Configures the Specification Version
             //or
-            PactBuilder = new PactBuilder(new PactConfig { PactDir = @"..\pacts", LogDir = @"c:\temp\logs" }); //Configures the PactDir and/or LogDir.
+            PactBuilder = new PactBuilder(new PactConfig { PactDir = @"..\pacties", LogDir = @"c:\temp\logs" }); //Configures the PactDir and/or LogDir.
 
             PactBuilder
                 .ServiceConsumer("ExampleSite")

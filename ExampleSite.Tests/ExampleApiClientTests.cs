@@ -41,7 +41,7 @@ namespace ExampleSite.Tests
         public async Task TestGetOnRootOfExampleApiReturnsExpectedThing()
         {
             _mockProviderService.Given("I just hit controller root")
-                .UponReceiving("A GET request at the root")
+                .UponReceiving("A GET request at the root of the controller")
                 .With(new ProviderServiceRequest
                 {
                     Method = HttpVerb.Get,
@@ -52,7 +52,7 @@ namespace ExampleSite.Tests
                     Status = 200,
                     Headers = new Dictionary<string, object>
                     {
-                        {"Content-Type", "application/json; charset=utf-8"}
+                        {"Content-Type", "text/plain; charset=utf-8"}
                     },
                     Body = "Ahh OK"
                 });
@@ -69,7 +69,7 @@ namespace ExampleSite.Tests
         [Test]
         public async Task TestGetOnExampleApiWithParamsReturnsExpectedThing()
         {
-            _mockProviderService.Given("I provide param arguments")
+            _mockProviderService.Given("I provide param arguments to a method on the API")
                 .UponReceiving("A GET request to return a populated ExampleObject with params")
                 .With(new ProviderServiceRequest
                 {
