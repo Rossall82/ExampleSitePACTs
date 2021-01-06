@@ -33,7 +33,7 @@ namespace ExampleAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/GetInDevelopment")]
+        [Route("/GetThatIsInDevelopment")]
         [ApiVersion("2.0")]
         public string GetInDevelopment() => "Only at v2.0";
     }
