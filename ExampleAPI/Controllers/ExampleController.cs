@@ -6,8 +6,13 @@ namespace ExampleAPI.Controllers
 {
     [Route("/")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class ExampleController : ControllerBase
     {
+        [HttpGet]
+        [Route("/Version")]
+        public string GetVersion() => "1.0";
+
         [Route("/")]
         [HttpGet]
         public string ExampleObject()
@@ -26,5 +31,10 @@ namespace ExampleAPI.Controllers
                 WhenItHappened = DateTime.Now
             };
         }
+
+        [HttpGet]
+        [Route("/GetInDevelopment")]
+        [ApiVersion("2.0")]
+        public string GetInDevelopment() => "Only at v2.0";
     }
 }
