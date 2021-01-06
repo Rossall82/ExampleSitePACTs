@@ -30,21 +30,21 @@ namespace ExampleAPI
             // API Versioning
             services.AddApiVersioning(options =>
             {
-                // Add the headers "api-supported-versions" and "api-deprecated-versions", this is better for discoverability
-                options.ReportApiVersions = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
 
                 // AssumeDefaultVersionWhenUnspecified should only be enabled when supporting legacy services that did not previously
                 // support API versioning. Forcing existing clients to specify an explicit API version for an
                 // existing service introduces a breaking change. Conceptually, clients in this situation are
                 // bound to some API version of a service, but they don't know what it is and never explicit request it.
-                options.AssumeDefaultVersionWhenUnspecified = false;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
+                options.AssumeDefaultVersionWhenUnspecified = true;
+
+                // Returns a response header named api-supported-versions that lists all available API versions.
                 options.ReportApiVersions = true;
 
                 // Defines how an API version is read from the current HTTP request
-                options.ApiVersionReader = ApiVersionReader.Combine(
-                    new QueryStringApiVersionReader("api-version"),
-                    new HeaderApiVersionReader("api-version"));
+                //options.ApiVersionReader = ApiVersionReader.Combine(
+                //    new QueryStringApiVersionReader("api-version"),
+                //    new HeaderApiVersionReader("api-version"));
             });
 
             services.AddVersionedApiExplorer(options =>
@@ -55,7 +55,7 @@ namespace ExampleAPI
 
                 // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
                 // can also be used to control the format of the API version in route templates
-                options.SubstituteApiVersionInUrl = true;
+                options.SubstituteApiVersionInUrl = false;
             });
 
             // Register the Swagger generator, defining 1 or more Swagger documents

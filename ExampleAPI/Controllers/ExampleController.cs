@@ -4,23 +4,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExampleAPI.Controllers
 {
-    [Route("/")]
     [ApiController]
-    [ApiVersion("1.0")]
+    [ApiVersion("1")]
+    [Route("/v{version:apiVersion}")]
     public class ExampleController : ControllerBase
     {
         [HttpGet]
-        [Route("/Version")]
+        [Route("/v{version:apiVersion}/Version")]
         public string GetVersion() => "1.0";
 
-        [Route("/")]
         [HttpGet]
         public string ExampleObject()
         {
             return "Ahh OK";
         }
 
-        [Route("/Get/{id}/{setItToThis}")]
+        [Route("/v{version:apiVersion}/Get/{id}/{setItToThis}")]
         [HttpGet]
         public ExampleObject Get(int id, string setItToThis)
         {
@@ -33,8 +32,15 @@ namespace ExampleAPI.Controllers
         }
 
         [HttpGet]
+        [ApiVersion("2")]
+        public string GetAtV2()
+        {
+            return "Ahh OK V2";
+        }
+
+        [HttpGet]
         [Route("/GetThatIsInDevelopment")]
-        [ApiVersion("2.0")]
+        [ApiVersion("2")]
         public string GetInDevelopment() => "Only at v2.0";
     }
 }
