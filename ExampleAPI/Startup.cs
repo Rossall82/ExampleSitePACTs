@@ -23,6 +23,7 @@ namespace ExampleAPI
             services.AddControllers();
             services.AddHealthChecks();
 
+            // API Versioning
             services.AddApiVersioning(options =>
             {
                 // Add the headers "api-supported-versions" and "api-deprecated-versions", this is better for discoverability
@@ -40,6 +41,9 @@ namespace ExampleAPI
                     new QueryStringApiVersionReader("api-version"),
                     new HeaderApiVersionReader("api-version"));
             });
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +65,14 @@ namespace ExampleAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
         }
     }
