@@ -41,10 +41,11 @@ namespace ExampleAPI
                 // Returns a response header named api-supported-versions that lists all available API versions.
                 options.ReportApiVersions = true;
 
-                // Defines how an API version is read from the current HTTP request
-                //options.ApiVersionReader = ApiVersionReader.Combine(
-                //    new QueryStringApiVersionReader("api-version"),
-                //    new HeaderApiVersionReader("api-version"));
+                //Defines how an API version is read from the current HTTP request
+                options.ApiVersionReader = ApiVersionReader.Combine(
+                    new UrlSegmentApiVersionReader());
+                    //new QueryStringApiVersionReader("api-version"),
+                    //new HeaderApiVersionReader("api-version"));
             });
 
             services.AddVersionedApiExplorer(options =>
@@ -55,7 +56,7 @@ namespace ExampleAPI
 
                 // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
                 // can also be used to control the format of the API version in route templates
-                options.SubstituteApiVersionInUrl = false;
+                options.SubstituteApiVersionInUrl = true;
             });
 
             // Register the Swagger generator, defining 1 or more Swagger documents
